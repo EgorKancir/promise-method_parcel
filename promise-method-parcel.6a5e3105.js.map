@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["console","log"],"mappings":";AAAAA,QAAQC,IAAI","file":"promise-method-parcel.6a5e3105.js","sourceRoot":"..","sourcesContent":["console.log(\"PROMISE hier\");"]}
