@@ -118,7 +118,58 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-console.log("PROMISE hier");
+// |---------------------------------------------------------------------------|
+// Завдання 1
+
+// "Порівняння кількох промісів"
+
+// >>>>>
+function delayedPromise(content, delay) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(content);
+    }, delay);
+  });
+}
+var promiseA = delayedPromise("<<A>>", 1000);
+var promiseB = delayedPromise("<<B>>", 2000);
+var promiseC = delayedPromise("<<C>>", 3000);
+var promiseD = delayedPromise("<<D>>", 4000);
+var promiseE = delayedPromise("<<E>>", 5000);
+Promise.all([promiseA, promiseB, promiseC, promiseD, promiseE]).then(function (value) {
+  console.log(value);
+}).catch(function (error) {
+  console.error(error);
+});
+// <<<<<
+
+// |---------------------------------------------------------------------------|
+
+// Завдання 2
+
+// "Змагання промісів"
+// >>>>>
+function randomDelay(content) {
+  return new Promise(function (resolve) {
+    var delay = Math.floor(Math.random() * (5000 - 1000 + 1) + 1000);
+    setTimeout(function () {
+      resolve(content);
+    }, delay);
+  });
+}
+var playerPromis1 = randomDelay("1 Player Promis");
+var playerPromis2 = randomDelay("2 Player Promis");
+var playerPromis3 = randomDelay("3 Player Promis");
+var playerPromis4 = randomDelay("4 Player Promis");
+var playerPromis5 = randomDelay("5 Player Promis");
+Promise.race([playerPromis1, playerPromis2, playerPromis3, playerPromis4, playerPromis5]).then(function (value) {
+  console.log("Winner >>> ".concat(value, " <<<"));
+}).catch(function (error) {
+  console.error(error);
+});
+// <<<<<
+
+// |---------------------------------------------------------------------------|
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -144,7 +195,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49649" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50168" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
